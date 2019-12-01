@@ -1,5 +1,8 @@
 # JD Moblie Website Demo
->一个简陋版京东移动端首页demo，图片瞎凑的hhhh，纯练手
+>一个实现了自适应响应布局的简陋版京东移动端首页demo，图片瞎凑的hhhh，纯练手
+## Demo Screenshot
+![demo screenshot](jddemo1.jpg)
+![demo screenshot](jddemo2.jpg)
 ## Notes
 1. 百分比自适应布局/流式布局
 2. 在移动设备种，浏览器和网页还有一层虚拟容器viewport，用来承载网页，可以缩放
