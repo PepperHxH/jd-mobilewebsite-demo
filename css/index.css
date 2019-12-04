@@ -25,7 +25,7 @@ body {
     max-width: 640px;
     min-width: 320px;
     margin: 0 auto;
-    background-color: #d8505c;
+    background-color: rgba(216, 80, 92, 0);
     position: relative;
 }
 .jd_search .jd_search_box a{
@@ -37,6 +37,7 @@ body {
     height: 40px;
     text-align: center;
     line-height: 40px;
+    font-size: 17px;
     color: #fff;
 }
 .jd_search .jd_search_box .login{
@@ -44,6 +45,7 @@ body {
     height: 40px;
     text-align: center;
     line-height: 40px;
+    font-size: 17px;
     color: #fff;
     right: 0;
 }
@@ -85,7 +87,6 @@ body {
 }
 .jd_banner ul:first-child li {
     width: 5%;
-    padding-top: 40px;
     float: left;
 }
 .jd_banner ul:first-child li a {
