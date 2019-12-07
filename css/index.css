@@ -86,7 +86,7 @@ body {
     -webkit-transform: translateX(-20%);
 }
 .jd_banner ul:first-child li {
-    width: 5%;
+    width: 20%;
     float: left;
 }
 .jd_banner ul:first-child li a {
@@ -95,6 +95,7 @@ body {
 }
 .jd_banner ul:first-child li a img {
     width: 640px;
+    height: 360px;
     display: block;
 }
 .jd_banner ul:last-child {

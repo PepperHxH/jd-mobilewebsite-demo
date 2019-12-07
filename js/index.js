@@ -24,9 +24,6 @@ var search = function() {
         || document.body.scrollTop
         || 0; 
 
-        this.console.log(height);
-        this.console.log(top);
-
         var opacity = 0;
 
         if(top > height) {
@@ -34,7 +31,6 @@ var search = function() {
         } else {
             opacity = 0.85 * (top/height);
         }
-        this.console.log(opacity);
         /*设置颜色给搜索盒子*/
         search.style.background = 'rgba(216, 80, 92,' + opacity + ')';
     }
@@ -55,14 +51,41 @@ var banner = function() {
     var pointBox = banner.querySelector('ul:last-child');
     var points = pointBox.querySelectorAll('li');
 
-    /* 1. 无缝滚动&无缝滑动（定时器 过渡 位移）*/
-    var index = 1; /*默认索引*/
-    var time = setInteval(function(){
-        index++;
+    var addTransition = function() {
         /*过渡*/
         imageBox.style.transition = 'all 0.2s';
-        
+        imageBox.style.webkitTransition = 'all 0.2s';
+    }
+
+    var removeTransition = function() {
+        /*清除过渡*/
+        imageBox.style.transition = 'none';
+        imageBox.style.webkitTransition = 'none';
+    }
+
+    var setTranslateX = function(translateX) {
+        imageBox.style.transform = 'translateX(' + translateX + 'px)';
+        imageBox.style.webkitTransform = 'translateX(' + translateX + 'px)';
+    }
+
+    /* 1. 无缝滚动&无缝滑动（定时器 过渡 位移）*/
+    var index = 1; /*默认索引*/
+    var time = setInterval(function(){
+        index++;
+        addTransition();
+        /*位移*/
+        setTranslateX(-index*width);
     },1000);
+
+    imageBox.addEventListener('transitionend', function(){
+        if(index >= 4) {
+            console.log('hhh');
+            index = 1;
+            removeTransition();
+            /*定位*/
+            setTranslateX(-index*width);
+        }
+    });
 
 }
 
