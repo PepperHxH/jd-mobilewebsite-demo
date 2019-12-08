@@ -70,7 +70,7 @@ var banner = function() {
 
     /* 1. 无缝滚动&无缝滑动（定时器 过渡 位移）*/
     var index = 1; /*默认索引*/
-    var time = setInterval(function(){
+    var timer = setInterval(function(){
         index++;
         addTransition();
         /*位移*/
@@ -79,13 +79,74 @@ var banner = function() {
 
     imageBox.addEventListener('transitionend', function(){
         if(index >= 4) {
-            console.log('hhh');
             index = 1;
             removeTransition();
             /*定位*/
             setTranslateX(-index*width);
+            /*无缝滑动*/
+        } else if(index <= 0) {
+            index = 3;
+            removeTransition();
+            setTranslateX(-index*width);
+        }
+
+        setPoint();
+    });
+
+    /* 2. 点盒子对应改变 （改变当前样式）*/
+    var setPoint = function() {
+        for(var i = 0; i < points.length; i++) {
+            points[i].classList.remove('now');
+        }
+        points[index-1].classList.add('now');
+    }
+
+
+    var startX = 0;
+    var distanceX = 0;
+    /*严谨判断*/
+    var isMove = false;
+
+    /* 3. 可以滑动 （touch事件 监听触摸点坐标改变距离 位移）*/
+    imageBox.addEventListener('touchstart', function(e) {
+        /*清除定时器*/
+        clearInterval(timer);
+        /*记录开始的位置*/
+        startX = e.touches[0].clientX;
+
+    });
+
+    imageBox.addEventListener('touchmove', function(e) {
+
+        var moveX = e.touches[0].clientX;
+        distanceX = moveX - startX;
+        /*distance大于0时 向右滑动*/
+        /*distance小于0时 向左滑动*/
+
+        /*滑动*/
+        /*基于当前的位置计算将要滑动到的位置*/
+        var translateX = -index * width + distanceX;
+        /*滑动时清除过渡*/
+        removeTransition();
+        /*做定位*/
+        setTranslateX(translateX);
+
+    });
+
+    imageBox.addEventListener('touchend', function(escape) {
+        /*滑动事件结束之后 判断当前滑动的距离*/
+        /*有一个范围 若大于3/1则切换图片 否则吸附回去*/
+        if(isMove) {
+            if(Math.abs(distanceX) < width/3) {
+                /* 4. 当滑动距离不够 吸附回去 （过渡 位移） */
+                
+            } else {
+                /* 5. 当滑动距离够了时 跳转  上一张  下一张 （判断方向 过渡和位移）*/
+                
+            }
         }
     });
+    
 
 }
 
